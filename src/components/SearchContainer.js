@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchForm from './SearchForm'
-import { employees } from '../utils/employees';
+// import { employees } from '../utils/employees';
 
 export class SearchContainer extends Component {
   state = {
