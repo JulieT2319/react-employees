@@ -6,10 +6,10 @@ function Table() {
 
     <table>
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Position</th>
-        <th>Location</th>
+        <th><button>First Name</button></th>
+        <th><button>Last Name</button></th>
+        <th><button>Position</button></th>
+        <th><button>Location</button></th>
       </tr>
       {
         employees.map(person => (
