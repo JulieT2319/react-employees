@@ -9,11 +9,11 @@ function SearchForm(props) {
         <input
           onChange={props.handleInputChange}
           value={props.value}
-          name="searchFirst"
+          name="search"
           type="text"
           className="form-control"
           placeholder="First Name"
-          id="searchFirst"
+          id="search"
         />
         <br />
         <button onClick={props.handleFormSubmit} className="btn btn-primary">
