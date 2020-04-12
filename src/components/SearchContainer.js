@@ -25,6 +25,7 @@ export class SearchContainer extends Component {
     // let nameToFind = this.state.search;
     this.setState({
       search: "",
+      result: ['hello', 'goodby']
     })
     // esult: { employees }.filter(function (person) { return person.firstName.includes(nameToFind) })
 
