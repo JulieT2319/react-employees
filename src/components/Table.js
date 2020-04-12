@@ -1,6 +1,6 @@
 import React from 'react'
 import { employees } from '../utils/employees'
-function Table() {
+function Table(props) {
   return (
 
 
