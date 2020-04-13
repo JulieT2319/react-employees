@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Table from "../components/Table"
-import { SearchContainer } from '../components/SearchContainer'
+import SearchContainer from '../components/SearchContainer'
 import { employees } from '../utils/employees'
 
 export default class Main extends Component {
@@ -21,10 +21,39 @@ export default class Main extends Component {
     // this.sortEmployees()
   }
 
+  handleInputChange = event => {
+    event.preventDefault();
+    // Getting the value and name of the input which triggered the change
+    const { name, value } = event.target;
+
+    // Updating the input's state
+    this.setState({
+      [name]: value
+    });
+  };
+
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    // let nameToFind = this.state.search;
+    this.setState({
+      search: "",
+      result: ['hello', 'goodby']
+    })
+    // esult: { employees }.filter(function (person) { return person.firstName.includes(nameToFind) })
+
+
+  }
+
+
   render() {
     return (
       <div className="center container">
-        <SearchContainer />
+        <SearchContainer
+          value={this.state.search}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit}
+        />
 
         <Table
           employeeSort={this.state.employeeSort}
