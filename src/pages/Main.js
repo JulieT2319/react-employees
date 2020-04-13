@@ -12,13 +12,49 @@ export default class Main extends Component {
     search: ""
   }
 
+  sortAsc = (a, b) => {
+    const itema = a[this.state.sortCol].toLowerCase();
+    const itemb = b[this.state.sortCol].toLowerCase();
+    if (itema > itemb) {
+      return 1
+    }
+    if (itema < itemb) {
+      return -1
+    }
+    return 0
+  }
+  sortDesc = (a, b) => {
+    const itema = a[this.state.sortCol].toLowerCase();
+    const itemb = b[this.state.sortCol].toLowerCase();
+    if (itema > itemb) {
+      return -1
+    }
+    if (itema < itemb) {
+      return 1
+    }
+    return 0
+  }
+  sortEmployees = () => {
+    if (this.state.sortCol === "") {
+      return;
+    } else if (!this.state.order) {
+      let sorted = this.state.employeeSort.sort(this.sortAsc);
+      this.setState({ employeeSort: sorted })
+    } else {
+      let sorted = this.state.employeeSort.sort(this.sortDesc);
+      this.setState({ employeeSort: sorted })
+    }
+
+  }
   handleClick = event => {
     if (this.state.sortCol === event.target.id) {
+      this.sortEmployees()
       this.setState({ order: !this.state.order })
     } else {
       this.setState({ sortCol: event.target.id, order: true });
+      this.sortEmployees()
     }
-    // this.sortEmployees()
+
   }
 
   handleInputChange = event => {
