@@ -9,7 +9,10 @@ export default class Main extends Component {
     employeeSort: employees,
     sortCol: "",
     order: true,
-    search: ""
+    searchFirst: "",
+    searchLast: "",
+    searchPosition: "",
+    searchLocation: ""
   }
 
   sortAsc = (a, b) => {
@@ -74,17 +77,31 @@ export default class Main extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    let nameToFind = this.state.search;
-    let list = employees;
+    let firstName = this.state.searchFirst.toLowerCase();
+    let lastName = this.state.searchLast.toLowerCase();
+    let location = this.state.searchLocation.toLowerCase();
+    let position = this.state.searchPosition.toLowerCase();
+    let list = this.state.employeeSort;
     this.setState({
-      search: "",
-      employeeSort: list.filter(function (person) { return person.firstName.toLowerCase().includes(nameToFind) })
+      searchFirst: "",
+      searchLast: "",
+      searchPosition: "",
+      searchLocation: "",
+      employeeSort: list.filter(function (person) { return (person.firstName.toLowerCase().includes(firstName) && person.lastName.toLowerCase().includes(lastName) && person.position.toLowerCase().includes(position) && person.location.toLowerCase().includes(location)) })
     })
-
-
-
   }
-
+  handleFormReset = event => {
+    event.preventDefault();
+    this.setState({
+      employeeSort: employees,
+      sortCol: "",
+      order: true,
+      searchFirst: "",
+      searchLast: "",
+      searchPosition: "",
+      searchLocation: ""
+    });
+  }
 
   render() {
     return (
@@ -93,6 +110,7 @@ export default class Main extends Component {
           value={this.state.search}
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleFormSubmit}
+          handleFormReset={this.handleFormReset}
         />
 
         <Table
