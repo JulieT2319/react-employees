@@ -9,7 +9,8 @@ export default class Main extends Component {
     employeeSort: employees,
     sortCol: "",
     order: true,
-    search: ""
+    search: "",
+    result: []
   }
 
   sortAsc = (a, b) => {
@@ -48,8 +49,8 @@ export default class Main extends Component {
   }
   handleClick = event => {
     if (this.state.sortCol === event.target.id) {
-      this.sortEmployees()
       this.setState({ order: !this.state.order })
+      this.sortEmployees()
     } else {
       this.setState({ sortCol: event.target.id, order: true });
       this.sortEmployees()
@@ -71,12 +72,13 @@ export default class Main extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    // let nameToFind = this.state.search;
+    let nameToFind = this.state.search;
+    let list = employees;
     this.setState({
       search: "",
-      result: ['hello', 'goodby']
+      result: list.filter(function (person) { return person.firstName.toLowerCase().includes(nameToFind) })
     })
-    // esult: { employees }.filter(function (person) { return person.firstName.includes(nameToFind) })
+
 
 
   }
