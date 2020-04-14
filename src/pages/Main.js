@@ -58,7 +58,6 @@ export default class Main extends Component {
       })
 
     }
-
   }
 
   handleInputChange = event => {
