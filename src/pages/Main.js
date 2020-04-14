@@ -9,8 +9,7 @@ export default class Main extends Component {
     employeeSort: employees,
     sortCol: "",
     order: true,
-    search: "",
-    result: []
+    search: ""
   }
 
   sortAsc = (a, b) => {
@@ -80,7 +79,7 @@ export default class Main extends Component {
     let list = employees;
     this.setState({
       search: "",
-      result: list.filter(function (person) { return person.firstName.toLowerCase().includes(nameToFind) })
+      employeeSort: list.filter(function (person) { return person.firstName.toLowerCase().includes(nameToFind) })
     })
 
 
