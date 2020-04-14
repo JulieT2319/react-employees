@@ -38,7 +38,7 @@ export default class Main extends Component {
   sortEmployees = () => {
     if (this.state.sortCol === "") {
       return;
-    } else if (!this.state.order) {
+    } else if (this.state.order) {
       let sorted = this.state.employeeSort.sort(this.sortAsc);
       this.setState({ employeeSort: sorted })
     } else {
@@ -49,11 +49,15 @@ export default class Main extends Component {
   }
   handleClick = event => {
     if (this.state.sortCol === event.target.id) {
-      this.setState({ order: !this.state.order })
-      this.sortEmployees()
+      this.setState({ order: !this.state.order }, () => {
+        this.sortEmployees()
+      })
+
     } else {
-      this.setState({ sortCol: event.target.id, order: true });
-      this.sortEmployees()
+      this.setState({ sortCol: event.target.id, order: true }, () => {
+        this.sortEmployees()
+      })
+
     }
 
   }
